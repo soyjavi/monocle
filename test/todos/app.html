@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+  <title>Todos</title>
+
+  <link rel="stylesheet" href="assets/stylesheets/application.css" type="text/css" charset="utf-8">
+</head>
+<body>
+  <div id="views">
+    <div id="tasks">
+      <h1>Monocle Todos</h1>
+
+      <form>
+        <input type="text" placeholder="What needs to be done?">
+        <a href="#">Add</a>
+      </form>
+
+      <div class="items"></div>
+
+      <footer>
+        <a class="clear">Clear completed</a>
+        <div class="count"><span class="countVal"></span> left</div>
+      </footer>
+    </div>
+  </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="assets/javascripts/QuoJS-development.js"></script>
+
+    <script src="../../src/build/monocle.js"></script>
+    <script src="../../src/build/monocle.model.js"></script>
+    <script src="../../src/build/monocle.controller.js"></script>
+    <script src="../../src/build/monocle.view.js"></script>
+    <script src="../../src/build/monocle.mustache.js"></script>
+
+    <script src="build/app.js"></script>
+</body>
+</html>

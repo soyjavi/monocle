@@ -111,9 +111,7 @@
       if (type === "array") {
         domain = _compact(selector);
       } else if (type === "string" && IS_HTML_FRAGMENT.test(selector)) {
-        // console.error("2 --> ", selector);
         domain = $$.fragment(selector.trim(), RegExp.$1);
-        // console.error(domain);
         selector = null;
       } else if (type === "string") {
         domain = $$.query(document, selector);
@@ -252,10 +250,7 @@
 
   (function($$) {
     $$.fn.attr = function(name, value) {
-        console.error ("attr", arguments);
       if ($$.toType(name) === "string" && value === void 0) {
-        console.error(this[0])
-
         return this[0].getAttribute(name);
       } else {
         return this.each(function() {
@@ -454,8 +449,6 @@
         }
         parent = this.parentNode;
         if (parent) {
-            console.error ("replaceWith", content);
-
           parent.insertBefore(content, this);
         }
         return $$(this).remove();

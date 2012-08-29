@@ -15,7 +15,6 @@ class Monocle.Controller extends Monocle.Module
         @events = @constructor.events unless @events
         @elements = @constructor.elements unless @elements
 
-        # @delegateEvents(@events) if @events
         @delegateEvents() if @events
         @refreshElements() if @elements
         super
@@ -39,8 +38,8 @@ class Monocle.Controller extends Monocle.Module
             # @[value] = @el.find(key)
             jq = $(key, @el)
             quo = @el.find(key)
-            if jq.length > 0
-                console.error "refreshElements -> ", jq, quo
+            # if jq.length > 0
+            #     console.error "refreshElements -> ", jq, quo
             @[value] = jq
 
     destroy: =>

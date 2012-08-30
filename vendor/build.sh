@@ -4,7 +4,7 @@
 COMPILER=google-compiler/compiler.jar
 SOURCES=../src/build/
 NAMESPACE=monocle.
-BUILDPATH=../src/release/
+BUILDPATH=../release/
 BUILDFILE=$NAMESPACE"js"
 
 #script

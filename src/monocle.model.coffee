@@ -59,6 +59,8 @@ class Monocle.Model extends Monocle.Module
             result.push(value)
         result
 
+    @destroyAll: -> @records = {}
+
     # Instance Methods
     constructor: (attributes) ->
         super

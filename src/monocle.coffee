@@ -102,4 +102,7 @@ Monocle = @Monocle = {}
 Monocle.version    = '0.0.2'
 Monocle.Events     = Events
 Monocle.Module     = Module
+Monocle.App        = {}
 Monocle.Dom        = (args...) -> if $$ then $$ args... else $ args...
+
+window.__ = Monocle.App

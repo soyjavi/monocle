@@ -5,9 +5,7 @@ class Monocle.Model extends Monocle.Module
     @attributes : []
     @uid_counter: 0
 
-    # @configure: (@className, attributes...) ->
-    @configure: (name, attributes...) ->
-        @className  = name
+    @configure: (attributes...) ->
         @records    = {}
         @attributes = attributes if attributes.length
         @attributes or =  []
@@ -64,6 +62,7 @@ class Monocle.Model extends Monocle.Module
     # Instance Methods
     constructor: (attributes) ->
         super
+        @className = @constructor.name
         @load attributes if attributes
         @uid = @constructor.uid()
 

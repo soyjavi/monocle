@@ -3,11 +3,11 @@ class Monocle.View extends Monocle.Controller
     @container: null
 
     constructor: (options) ->
+        super
         @template = @constructor.template unless @template
         @container = @constructor.container unless @container
-        @container = Monocle.Dom(@container)
-        @container.attr('data-monocle', @constructor.name);
-        super
+        @container = Monocle.Dom @container
+        @container.attr 'data-monocle', @constructor.name
 
     html: (elements...) ->
         @_html "html", elements...

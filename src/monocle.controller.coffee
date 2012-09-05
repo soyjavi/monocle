@@ -5,11 +5,16 @@ class Monocle.Controller extends Monocle.Module
     eventSplitter: /^(\S+)\s*(.*)$/
     tag: 'div'
 
+    ###
+    Constructor of Monocle.Controller based on Monocle.Module
+    @method constructor
+    @param  {options} Create properties within the controller or an element selector if the type is string.
+    ###
     constructor: (options) ->
-        @options = options
-
-        for key, value of @options
-            @[key] = value
+        if typeof options is "string"
+            @el = Monocle.Dom(options)
+        else
+            @[key] = value for key, value of options
 
         @el = Monocle.Dom(document.createElement(@tag)) unless @el
         @events = @constructor.events unless @events

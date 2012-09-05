@@ -1,5 +1,5 @@
 ###
-    Monocle 0.1
+    Monocle 0.2
     http://monocle.tapquo.com
 
     Copyright (C) 2011,2012 Javi Jiménez Villar (@soyjavi)
@@ -99,10 +99,12 @@ class Module
 # Globals
 Monocle = @Monocle = {}
 
-Monocle.version    = '0.0.2'
-Monocle.Events     = Events
-Monocle.Module     = Module
-Monocle.App        = {}
-Monocle.Dom        = (args...) -> if $$ then $$ args... else $ args...
+Monocle.version     = "0.2"
+Monocle.Events      = Events
+Monocle.Module      = Module
+Monocle.Dom         = (args...) -> if $$ then $$ args... else $ args...
 
-window.__ = Monocle.App
+@__ =  Monocle.App  = Model: {}, View: {}, Controller: {}
+@__Model      = Monocle.App.Model
+@__View       = Monocle.App.View
+@__Controller = Monocle.App.Controller

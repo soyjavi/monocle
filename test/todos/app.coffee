@@ -1,6 +1,5 @@
-class Task extends Monocle.Model
-    @configure  "Tarea",
-                "name", "done"
+class __Model.Task extends Monocle.Model
+    @configure  "name", "done"
 
     @active: ->
         @select (item) -> !item.done
@@ -16,7 +15,7 @@ class Task extends Monocle.Model
         unless @name
             "name is required"
 
-class TaskVw extends Monocle.View
+class __View.Task extends Monocle.View
     container: ".items"
 
     template: """
@@ -63,7 +62,7 @@ class TaskVw extends Monocle.View
 
     onDestroy: -> @remove()
 
-class TaskCtrl extends Monocle.Controller
+class __Controller.Task extends Monocle.Controller
     events:
         "click  form a":   "onCreate"
         "click .clear": "onClear"
@@ -75,10 +74,10 @@ class TaskCtrl extends Monocle.Controller
 
     constructor: ->
         super
-        Task.bind("create", @bindCreate)
-        Task.bind("change", @bindChange)
-        Task.bind("destroy", @bindDestroy)
-        Task.bind("error", @bindError)
+        __Model.Task.bind("create", @bindCreate)
+        __Model.Task.bind("change", @bindChange)
+        __Model.Task.bind("destroy", @bindDestroy)
+        __Model.Task.bind("error", @bindError)
 
     bindError: (task) =>
         console.error arguments
@@ -88,34 +87,42 @@ class TaskCtrl extends Monocle.Controller
         alert task.name
 
     bindCreate: (task) =>
-        view = new TaskVw(item: task)
+        # view = new __View.Task(item: task)
+        view = new __View.Task(item: task)
         #view.add(task)
+        tasks = []
+        tasks.push task
+        tasks.push task
         view.append(task)
 
     bindChange: =>
-        active = Task.active().length
+        active = __Model.Task.active().length
         @count.text(active)
 
     onCreate: (event) ->
         event.preventDefault()
-        Task.create(name: @input.val())
+        __Model.Task.create(name: @input.val())
         @input.val("")
-        console.error "tasks >> ", Task.all()
+        console.error "tasks >> ", __Model.Task.all()
 
     onClear: (event) ->
         event.preventDefault()
-        Task.destroyDone()
+        __Model.Task.destroyDone()
 
-app = new TaskCtrl(el: $$("#tasks"))
-
+# app = new __Controller.Task(el: $$("#tasks"))
+app = new __Controller.Task('#tasks')
 
 
 # =============================================================================
 
-Task.create(name: "Cafe con Ina en el Laia")
-# Task.create(name: "Charla Ibermatica")
-# Task.create(name: "Volver a la oficina")
+__Model.Task.create(name: "Cafe con Ina en el Laia")
+__Model.Task.create(name: "Charla Ibermatica")
+__Model.Task.create(name: "Volver a la oficina")
+Monocle.App.Model.Task.create(name: "Volver a la oficina 2")
+
+
 
 # console.error Task.all()
 
 console.error "=================================================================="
+console.error __

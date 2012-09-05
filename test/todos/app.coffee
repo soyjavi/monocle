@@ -118,11 +118,6 @@ app = new __Controller.Task('#tasks')
 __Model.Task.create(name: "Cafe con Ina en el Laia")
 __Model.Task.create(name: "Charla Ibermatica")
 __Model.Task.create(name: "Volver a la oficina")
-Monocle.App.Model.Task.create(name: "Volver a la oficina 2")
-
-
-
-# console.error Task.all()
+console.error __Model.Task.all()
 
 console.error "=================================================================="
-console.error __

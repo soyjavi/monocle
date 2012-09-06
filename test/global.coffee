@@ -1,13 +1,13 @@
 
 class Animal extends Monocle.Model
     @configure  "Animalillo",
-                "key", "name", "type"
+                "key", "name", "type", "description"
 
     full: ->  [@name, @type].join('-->')
 
     validate: ->
-        unless @name
-            "name is required"
+        unless @description
+            "description is required"
 
 
 class AnimalVw extends Monocle.View
@@ -57,6 +57,9 @@ class AnimalCtrl extends Monocle.Controller
         # @items.each ->
         #     console.error @
 
+    onError: (model, error) ->
+        console.error "Error: #{error}", model
+
     onCreate: (animal) ->
         view = new AnimalVw(item: animal)
         view.render(animal)
@@ -78,4 +81,6 @@ animal_ctrl = new AnimalCtrl(el: $('.animals'))
 
 
 Animal.create({'name': 'Flipper', 'type':'dolphin'})
-Animal.create({'name': 'Dexter', 'type':'cat'})
+Animal.create({'name': 'Dexter', 'type':'cat', 'description': 'Persian'})
+
+console.error Animal.all()

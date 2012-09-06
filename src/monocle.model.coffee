@@ -91,7 +91,7 @@ class Monocle.Model extends Monocle.Module
         result
 
     save: () ->
-        error = @validate()
+        error = @validate() if @validate?
         if error
             @trigger('error', error)
             return false
@@ -134,7 +134,7 @@ class Monocle.Model extends Monocle.Module
         @unbind()
         @
 
-    validate: -> throw new Error("#{error} in #{@constructor.name} model")
+    # validate: -> throw new Error("ERROR: Validate in #{@constructor.name} model")
 
     clone: -> Object.create(@)
 

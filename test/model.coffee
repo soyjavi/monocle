@@ -1,7 +1,7 @@
 class Animal extends Monocle.Model
     @configure  "Animalillo",
                 "key", "name", "type"
-                
+
     full: ->  [@name, @type].join('-->')
 
     validate: ->

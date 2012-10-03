@@ -21,7 +21,7 @@ class __View.Task extends Monocle.View
     template: """
         <div class="item {{#done}}done{{/done}}">
             <div class="view" title="Double click to edit...">
-                <input type="checkbox" {{#done}}checked="checked"{{/done}}>
+                <input type="checkbox" {{#done}}checked="checked"{{/done}} />
                 <span>{{name}}</span> <a class="destroy"></a>
             </div>
             <div class="edit">
@@ -31,8 +31,8 @@ class __View.Task extends Monocle.View
 
     events:
         "dblclick       .view" : "onEdit"
-        "click          .destroy" : "onDestroy"
-        "click          input[type=checkbox]": "onCheck"
+        "tap            .destroy" : "onDestroy"
+        "tap            input[type=checkbox]": "onCheck"
         "blur           input[type=text]": "onBlur"
 
     elements:
@@ -52,11 +52,8 @@ class __View.Task extends Monocle.View
         @refresh()
 
     onCheck: (event) ->
-        event.preventDefault()
-        console.error "onCheck: ", arguments, @el, $('input[type=checkbox]').attr('checked')
-        done = @checkbox.attr('checked')
-        # done = "checked"
-        console.error "onCheck -> ", done
+        done = if @checkbox.attr('checked') is null then "checked" else undefined
+
         @item.updateAttributes(done: done)
         @refresh()
 

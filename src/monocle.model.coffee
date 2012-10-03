@@ -3,7 +3,7 @@ class Monocle.Model extends Monocle.Module
     @extend Monocle.Events
     @records    : {}
     @attributes : []
-    @uid_counter: 0
+    # @uid_counter: 0
 
     @configure: (attributes...) ->
         @records    = {}
@@ -18,9 +18,9 @@ class Monocle.Model extends Monocle.Module
         record.save()
 
     @uid: (prefix = 'c-') ->
-        uid = prefix + @uid_counter++
+        # uid = prefix + @uid_counter++
+        # uid = @uid(prefix) if @exists(uid)
         uid = guid()
-        #uid = @uid(prefix) if @exists(uid)
         uid
 
     @exists: (uid) ->

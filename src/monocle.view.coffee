@@ -33,7 +33,6 @@ class Monocle.View extends Monocle.Controller
         @replace(render)
         #@todo: QUOJS Bug >> Only one element
         @container[method] @el[0]
-        @refreshElements()
         @
 
     replace: (element) ->

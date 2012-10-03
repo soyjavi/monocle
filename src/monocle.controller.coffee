@@ -40,12 +40,7 @@ class Monocle.Controller extends Monocle.Module
 
     refreshElements: ->
         for key, value of @elements
-            # @[value] = @el.find(key)
-            jq = $(key, @el)
-            quo = @el.find(key)
-            # if jq.length > 0
-            #     console.error "refreshElements -> ", jq, quo
-            @[value] = jq
+            @[value] = @el.find(key)
 
     destroy: =>
         @trigger 'release'

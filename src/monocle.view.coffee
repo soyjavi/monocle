@@ -1,6 +1,8 @@
 class Monocle.View extends Monocle.Controller
 
-    @container: null
+    @container: undefined
+    @template: undefined
+    @model: undefined
 
     constructor: (options) ->
         super
@@ -18,12 +20,12 @@ class Monocle.View extends Monocle.Controller
     prepend: (elements...) ->
         @_html "prepend", elements...
 
-    remove: (elements...) ->
-        @item.destroy()
+    remove: () ->
+        @model.destroy()
         @el.remove()
 
     refresh: ->
-        render = Mustache.render(@template, @item)
+        render = Mustache.render(@template, @model)
         @replace render
 
     _html: (method, elements...) ->

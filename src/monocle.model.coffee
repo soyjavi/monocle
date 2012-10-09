@@ -5,7 +5,7 @@ class Monocle.Model extends Monocle.Module
     @attributes : []
     # @uid_counter: 0
 
-    @configure: (attributes...) ->
+    @fields: (attributes...) ->
         @records    = {}
         @attributes = attributes if attributes.length
         @attributes or =  []
@@ -40,7 +40,6 @@ class Monocle.Model extends Monocle.Module
                 return record.clone()
         throw new Error('Unknown record')
 
-    #WTF: ??
     @select: (callback) ->
         result = (record for id, record of @records when callback(record))
         @cloneArray(result)
@@ -133,8 +132,6 @@ class Monocle.Model extends Monocle.Module
         @trigger('change', 'destroy')
         @unbind()
         @
-
-    # validate: -> throw new Error("ERROR: Validate in #{@constructor.name} model")
 
     clone: -> Object.create(@)
 

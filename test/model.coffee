@@ -1,73 +1,50 @@
-class Animal extends Monocle.Model
-    @configure  "Animalillo",
-                "key", "name", "type"
+class Task extends Monocle.Model
+    @fields "name", "description", "type", "done"
 
-    full: ->  [@name, @type].join('-->')
+    summary: ->  [@name, @done].join('-->')
+
+    importe_mayor: ->
+        @select (task) -> task.import > 100
 
     validate: ->
         unless @name
             "name is required"
 
+# Create
+task = new Task()
+task.name = "Clean my teeth"
+task.type = "Home"
+task.save()
+# Or you can try:
+task = new Task name: "Go to the meeting", type: "Work", done: true
+task.save()
+# Inline way
+Task.create name: "Learn CoffeeScript", type: "Personal"
 
-console.log "-------------------- DATA --------------------"
+console.error "-------------------- DATA --------------------"
+tasks = Task.all()
+console.log tasks
+for task in tasks
+    console.log task.name
 
-Animal.create({name: 'lucas', type: 'dog'})
-Animal.create({type: 'aslkskks'})
-Animal.create({name: 'dexter', type: 'cat'})
-Animal.create({name: 'calcetines', type: 'cat'})
-Animal.create({name: 'nemo', type: 'fish'})
+console.error "-------------------- FIND --------------------"
+console.log "Find: ", Task.find tasks[1].uid
 
-animal = new Animal({'name': 'flipper'})
-animal.save()
+# Si quieres buscar por un determinado field
+console.log "FindBy: ", Task.findBy "name", "Clean my teeth"
 
-animal_2 = new Animal()
-animal_2.name = 'King Kong'
-animal_2.save()
-
-animal_3 = new Animal({'name': 'donkey'})
-animal_3.save()
-animal_3.type = 'video game'
-a = animal_3.save()
-
-console.log 'RECORDS: ', Animal.records
-
-console.log "-------------------- FIND --------------------"
-
-record = Animal.find(animal_2.uid)
-console.log "FIND #{animal_2.uid}: ", record
-
-record = Animal.find(122)
-console.log "FIND 122   : ", record
-
-record = Animal.findBy('type', 'cat')
-console.log "FINDBY type = 'cat'   : ", record, record.name, record.full()
-
-record = Animal.findBy('type', 'donkey')
-console.log "FINDBY type = 'cat'   : ", record, record.name
-
-console.log "-------------------- DESTROY --------------------"
-
-record.destroy()
-
-console.log "-------------------- NEXT --------------------"
-
-animals = Animal.all()
+# Tambien puedes seleccionar un grupo de instancias
+console.log "Undone Tasks: ", Task.select (task) -> !task.done
 
 
-console.log 'RECORDS: ', Animal.records
+console.error "------------------- UPDATE -------------------"
+last_task = tasks[tasks.length - 1]
+last_task.name = "Go to the evening meeting"
+last_task.save()
+# Inline way
+last_task.updateAttributes name: "Go to the evening meeting with George"
+console.log "Task updated: ", last_task.attributes()
 
-
-
-# dog = new Animal({type: 'dog'})
-# dog.create({id:2, name:'Perla'})
-
-# fish = new Animal {id:4, name:'Nemo'}
-# fish.name = "nemo"
-# fish.save()
-
-# cat = new Animal
-# cat.create({id:3, name:'Dexter'})
-
-#console.log Animal.attributes, dog, Animal.records
-
-#console.log "attributes", dog.attributes(), fish.attributes()
+console.error "------------------- DESTROY ------------------"
+last_task.destroy()
+console.log Task.all()

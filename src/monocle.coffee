@@ -99,13 +99,24 @@ class Module
 # Globals
 Monocle = @Monocle = {}
 
-Monocle.version     = "0.3"
+Monocle.version     = "0.9.4"
 Monocle.Events      = Events
 Monocle.Module      = Module
 Monocle.Dom         = (args...) -> if $$? then $$ args... else $ args...
 
+# Global events
+
+Module.extend.call(Monocle, Events)
+
+Module.create = (instances, statics) ->
+      class Result extends this
+      Result.include(instances) if instances
+      Result.extend(statics) if statics
+      Result.unbind?()
+      Result
+
 # Global Shortcuts
-@__ =  Monocle.App  = Model: {}, View: {}, Controller: {}
+@__ =  Monocle.App = Model: {}, View: {}, Controller: {}
 @__Model      = Monocle.App.Model
 @__View       = Monocle.App.View
 @__Controller = Monocle.App.Controller

@@ -1,0 +1,13 @@
+framework: jasmine
+
+launch_in_dev:
+- PhantomJS
+- Chrome
+
+src_files:
+- src/build/monocle.js
+- src/build/monocle.model.js
+- src/build/monocle.controller.js
+- src/build/monocle.view.js
+- src/build/monocle.mustache.js
+- spec/build/**/*.js

@@ -5,7 +5,7 @@ describe "Module", ->
   beforeEach ->
     User = Monocle.Module.create()
 
-  it "Module is healthy", ->
+  it "is healthy", ->
     expect(Monocle).toBeTruthy()
 
   it "can create subclasses", ->

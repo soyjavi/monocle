@@ -35,14 +35,18 @@ class Monocle.Model extends Monocle.Module
         record.clone()
 
     @findBy: (name, value) ->
-        for id, record of @records
+        for uid, record of @records
             if record[name] is value
                 return record.clone()
         throw new Error('Unknown record')
 
     @select: (callback) ->
-        result = (record for id, record of @records when callback(record))
+        result = (record for uid, record of @records when callback(record))
         @cloneArray(result)
+
+    @each: (callback) ->
+        for key, value of @records
+            callback(value.clone())
 
     @all: -> @cloneArray(@recordsValues())
 
@@ -86,8 +90,11 @@ class Monocle.Model extends Monocle.Module
                 result[key] = @[key]()
             else
                 result[key] = @[key]
-        result.id = @id if @id
         result
+
+    equal: (rec) ->
+        !!(rec and rec.constructor is @constructor and
+            (rec.uid and rec.uid is @uid))
 
     save: () ->
         error = @validate() if @validate?
@@ -102,6 +109,13 @@ class Monocle.Model extends Monocle.Module
 
     updateAttributes: (attributes, options) ->
         @load(attributes)
+        @save()
+
+    changeUID: (uid) ->
+        records = @constructor.records
+        records[uid] = records[@uid]
+        delete records[@uid]
+        @uid = uid
         @save()
 
     create: ->

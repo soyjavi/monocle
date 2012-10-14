@@ -2,7 +2,7 @@ framework: jasmine
 
 launch_in_dev:
 - PhantomJS
-- Chrome
+# - Chrome
 
 src_files:
 - src/build/monocle.js

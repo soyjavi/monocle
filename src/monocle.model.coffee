@@ -107,7 +107,7 @@ class Monocle.Model extends Monocle.Module
         @trigger('save')
         record
 
-    updateAttributes: (attributes, options) ->
+    updateAttributes: (attributes) ->
         @load(attributes)
         @save()
 

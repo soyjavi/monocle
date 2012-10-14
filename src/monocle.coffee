@@ -98,10 +98,10 @@ class Module
 
 # Globals
 Monocle = @Monocle = {}
-
 Monocle.version     = "0.9.4"
 Monocle.Events      = Events
 Monocle.Module      = Module
+Monocle.Templates   = {}
 Monocle.Dom         = (args...) -> if $$? then $$ args... else $ args...
 
 # Global events

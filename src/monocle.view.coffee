@@ -1,12 +1,15 @@
 class Monocle.View extends Monocle.Controller
 
     @container: undefined
+    @template_uri: undefined
     @template: undefined
     @model: undefined
 
     constructor: (options) ->
         super
         @template = @constructor.template unless @template
+        @_loadTemplateFrom(@template_url) unless @template
+
         @container = @constructor.container unless @container
         @container = Monocle.Dom @container
         @container.attr 'data-monocle', @constructor.name
@@ -45,3 +48,19 @@ class Monocle.View extends Monocle.Controller
         #@todo: QUOJS Bug >> Only one element
         @container[method] @el[0]
         @
+
+    _loadTemplateFrom: (url) ->
+        className = @constructor.name
+
+        unless Monocle.Templates[className]
+            loader = if $$? then $$ else $
+            response = loader.ajax
+                            url: url
+                            async: false
+                            dataType: 'text'
+                            error: -> console.error arguments
+            response = response.responseText unless loader is $$
+            Monocle.Templates[className] = response
+
+        @template = Monocle.Templates[className]
+

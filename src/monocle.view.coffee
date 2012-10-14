@@ -11,31 +11,15 @@ class Monocle.View extends Monocle.Controller
         @container = Monocle.Dom @container
         @container.attr 'data-monocle', @constructor.name
 
-    html: (elements...) ->
-        @_html "html", elements...
+    html: (elements...) -> @_html "html", elements...
 
-    append: (elements...) ->
-        @_html "append", elements...
+    append: (elements...) -> @_html "append", elements...
 
-    prepend: (elements...) ->
-        @_html "prepend", elements...
+    prepend: (elements...) -> @_html "prepend", elements...
 
     remove: () ->
         @model.destroy()
         @el.remove()
-
-    refresh: ->
-        render = Mustache.render(@template, @model)
-        @replace render
-
-    _html: (method, elements...) ->
-        elements = (element.el or element for element in elements)
-
-        render = Mustache.render(@template, elements...)
-        @replace(render)
-        #@todo: QUOJS Bug >> Only one element
-        @container[method] @el[0]
-        @
 
     replace: (element) ->
         #render = Mustache.render(@template, elements...)
@@ -47,3 +31,17 @@ class Monocle.View extends Monocle.Controller
         @delegateEvents(@events)
         @refreshElements()
         @el
+
+    refresh: ->
+        render = Monocle.templayed(@template)(@model)
+        @replace render
+
+    _html: (method, elements...) ->
+        elements = (element.el or element for element in elements)
+
+        render = Monocle.templayed(@template)(elements...)
+
+        @replace(render)
+        #@todo: QUOJS Bug >> Only one element
+        @container[method] @el[0]
+        @

@@ -1,19 +1,19 @@
-# Monocle 2.0
-### Micro #JavaScript Library for Mobile Devices
+# Monocle 0.9.4 (BETA)
+### Build Awesome CoffeeScript MVC Applications
 
-## Monocle?
-Monocle is a micro, modular, Object-Oriented and concise JavaScript Library that simplifies HTML document traversing, event handling, and Ajax interactions for rapid mobile web development. It allows you to write powerful, flexible and cross-browser code with its elegant, well documented, and micro coherent API.
-
-Is designed to change the way that you write JavaScript with the goal: a 8-12k library that handles most basic drudge work with a nice API so you can concentrate on getting stuff done.
-Released under the MIT license, which gives you the possibility to use it and modify it in every circumstance.
+## Friend of my friends
+I'm built to work with the most famous libraries of the web development. If your project is desktop you can use me with jQuery and if on the contrary it is a mobile project I will perfectly mixed with QuoJS or Zepto.
 
 [Source code](https://github.com/soyjavi/monocle) and [issue tracking](https://github.com/soyjavi/monocle/issues) are available on Github.
 
-## Learn more about the project
-The idea of Monocle arose earlier this year, the author [Javi Jiménez Villar](http://twitter.com/soyjavi) saw how existing JavaScript Libraries were not optimized for mobile devices. They were very big libraries that were built based on requirements of desktop devices, so mobile performance was not optimal.
-These libraries doesn't have a good support to touch events such as: touch, tap, swipe ... or a semantic API that would help the developer to create a good & cool JavaScript.
+## I like writing with class
+I'm made to work seamlessly with CoffeeScript, a simple and elegant language. With me all your applications will be pure verbosity and poetry. If you also want to use me in old-school mode with the all powerful of JavaScript.
 
-- Visit monocle [Site](http://monocle.tapquo.com/)
+## I use a grateful pattern
+I use the MVC pattern therefore I am a fashion victim. All this would not have been possible if my creator @soyjavi had not met the inspiring work of @maccman. You can contribute and help me to be better everyday.
+
+
+- Visit Monocle [Site](http://monocle.tapquo.com/)
 
 ## Credits
 Created by [Javier Jiménez](http://twitter.com/soyjavi).

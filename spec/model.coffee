@@ -9,6 +9,7 @@ describe "Model", ->
     asset = Asset.create name: "test.pdf"
     expect(Asset.all()[0]).toEqual asset
 
+
   it "can update records", ->
     asset = Asset.create(name: "test.pdf")
     expect(Asset.all()[0].name).toEqual "test.pdf"
@@ -16,11 +17,13 @@ describe "Model", ->
     asset.save()
     expect(Asset.all()[0].name).toEqual "wem.pdf"
 
+
   it "can destroy records", ->
     asset = Asset.create(name: "test.pdf")
     expect(Asset.all()[0]).toEqual asset
     asset.destroy()
     expect(Asset.all()[0]).toBeFalsy()
+
 
   it "can find records", ->
     asset = Asset.create(name: "test.pdf")
@@ -31,6 +34,7 @@ describe "Model", ->
       Asset.find asset.uid
     ).toThrow()
 
+
   it "can find records by attribute", ->
     asset = Asset.create name: "test.pdf"
     expect(Asset.findBy("name", "test.pdf")).toBeTruthy()
@@ -40,6 +44,7 @@ describe "Model", ->
       Asset.findBy "name", "test.pdf"
     ).toThrow()
 
+
   it "can check existence", ->
     asset = Asset.create name: "test.pdf"
     expect(asset.exists()).toBeTruthy()
@@ -48,6 +53,7 @@ describe "Model", ->
     expect(asset.exists()).toBeFalsy()
     expect(Asset.exists(asset.id)).toBeFalsy()
 
+
   it "can select records", ->
     asset1 = Asset.create(name: "test.pdf")
     asset2 = Asset.create(name: "foo.pdf")
@@ -55,6 +61,7 @@ describe "Model", ->
       rec.name is "foo.pdf"
     )
     expect(selected).toEqual [asset2]
+
 
   it "can return all records", ->
     asset1 = Asset.create(name: "test.pdf")
@@ -68,6 +75,7 @@ describe "Model", ->
     Asset.destroyAll()
     expect(Asset.count()).toEqual 0
 
+
   it "can be serialized into JSON", ->
     asset = new Asset(name: "Johnson me!")
     expect(JSON.stringify(asset.attributes())).toEqual "{\"name\":\"Johnson me!\"}"
@@ -78,25 +86,30 @@ describe "Model", ->
   #   assets = Asset.fromJSON("[{\"name\":\"Un-Johnson me!\"}]")
   #   expect(assets[0] and assets[0].name).toEqual "Un-Johnson me!"
 
+
   it "can validate", ->
     Asset.include validate: ->
       "Name required"  unless @name
     expect(Asset.create(name: "")).toBeFalsy()
     expect(Asset.create(name: "Yo big dog")).toBeTruthy()
 
+
   it "has attribute hash", ->
     asset = new Asset(name: "wazzzup!")
     expect(asset.attributes()).toEqual name: "wazzzup!"
 
+
   it "attributes() should not return undefined atts", ->
     asset = new Asset()
     expect(asset.attributes()).toEqual {}
+
 
   it "can load attributes()", ->
     asset = new Asset()
     result = asset.load(name: "In da' house")
     expect(result).toBe asset
     expect(asset.name).toEqual "In da' house"
+
 
   it "can load() attributes respecting getters/setters", ->
     Asset.include name: (value) ->
@@ -109,6 +122,7 @@ describe "Model", ->
     expect(asset.first_name).toEqual "Javi"
     expect(asset.last_name).toEqual "Jimenez"
 
+
   it "attributes() respecting getters/setters", ->
     Asset.include name: ->
       "Bob"
@@ -116,13 +130,16 @@ describe "Model", ->
     asset = new Asset()
     expect(asset.attributes()).toEqual name: "Bob"
 
+
   it "can generate UID", ->
     asset = Asset.create name: "who's in the house?"
     expect(asset.uid).toBeTruthy()
 
+
   it "can be cloned", ->
     asset = Asset.create name: "what's cooler than cool?"
     expect(asset.clone().__proto__).not.toBe Asset::
+
 
   it "clones are dynamic", ->
     asset = Asset.create name: "hotel california"
@@ -131,10 +148,12 @@ describe "Model", ->
     asset.save()
     expect(clone.name).toEqual "checkout anytime"
 
+
   it "create or save should return a clone", ->
     asset = Asset.create name: "what's cooler than cool?"
     expect(asset.__proto__).not.toBe Asset::
     expect(asset.__proto__.__proto__).toBe Asset::
+
 
   it "should be able to change ID", ->
     asset = Asset.create name: "hotel california"
@@ -143,10 +162,12 @@ describe "Model", ->
     expect(asset.uid).toBe "foo"
     expect(Asset.exists("foo")).toBeTruthy()
 
+
   it "new records should not be eql", ->
     asset1 = new Asset
     asset2 = new Asset
     expect(asset1.equal(asset2)).not.toBeTruthy()
+
 
   it "should generate unique cIDs", ->
     Asset.create
@@ -158,6 +179,7 @@ describe "Model", ->
       id: 2
 
     expect(Asset.all()[0].equal(Asset.all()[1])).not.toBeTruthy()
+
 
   it "should handle more than 10 cIDs correctly", ->
     i = 0
@@ -172,6 +194,7 @@ describe "Model", ->
       noop = spy: ->
       spyOn noop, "spy"
       spy = noop.spy
+
 
     it "can interate over records", ->
       asset1 = Asset.create name: "test.pdf"

@@ -1,5 +1,5 @@
 ###
-    Monocle 0.9.4
+    Monocle 0.9.5
     http://monocle.tapquo.com
 
     Copyright (C) 2011,2012 Javi Jiménez Villar (@soyjavi)
@@ -67,7 +67,7 @@ moduleKeywords = ['included', 'extended']
 
 class Module
     @include: (obj) ->
-        throw('include(obj) requires obj') unless obj
+        throw new Error('include(obj) requires obj') unless obj
         for key, value of obj when key not in moduleKeywords
             @::[key] = value
 
@@ -76,12 +76,11 @@ class Module
         @
 
     @extend: (obj) ->
-        throw('extend(obj) requires obj') unless obj
+        throw new Error('extend(obj) requires obj') unless obj
         for key, value of obj when key not in moduleKeywords
             @[key] = value
 
-        extended = obj.extended
-        extended.apply(this) if extended
+        obj.extended?.apply(this)
         @
 
     @proxy: (method) ->
@@ -109,11 +108,11 @@ Monocle.Dom         = (args...) -> if $$? then $$ args... else $ args...
 Module.extend.call(Monocle, Events)
 
 Module.create = (instances, statics) ->
-      class Result extends this
-      Result.include(instances) if instances
-      Result.extend(statics) if statics
-      Result.unbind?()
-      Result
+  class Result extends this
+  Result.include(instances) if instances
+  Result.extend(statics) if statics
+  Result.unbind?()
+  Result
 
 # Global Shortcuts
 @__ =  Monocle.App = Model: {}, View: {}, Controller: {}

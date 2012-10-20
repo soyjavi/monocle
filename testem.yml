@@ -2,7 +2,7 @@ framework: jasmine
 
 launch_in_dev:
 - PhantomJS
-# - Chrome
+- Chrome
 # - Firefox
 # - Safari
 # - Opera
@@ -16,5 +16,8 @@ src_files:
 - src/build/monocle.controller.js
 - src/build/monocle.templayed.js
 - src/build/monocle.view.js
-- spec/dependencies/**/*.js
+
+# - spec/dependencies/quojs.js
+- spec/dependencies/jquery.js
+
 - spec/build/**/*.js

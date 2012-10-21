@@ -3,7 +3,7 @@ describe "View", ->
   TaskView  = undefined
   container = "ul.tasks"
   template  = "<li>{{name}}</li>"
-  template_url = "spec/dependencies/template.mustache"
+  template_url = "spec/resources/template.mustache"
   element = undefined
 
   beforeEach ->

@@ -40,7 +40,6 @@ class Monocle.View extends Monocle.Controller
         elements = (element.el or element for element in elements)
 
         render = Monocle.templayed(@template)(elements...)
-
         @replace(render)
         #@todo: QUOJS Bug >> Only one element
         @container[method] @el[0]
@@ -56,8 +55,7 @@ class Monocle.View extends Monocle.Controller
                             async: false
                             dataType: 'text'
                             error: -> console.error arguments
-            response = response.responseText unless loader is $$
+            response = response.responseText unless $$?
             Monocle.Templates[className] = response
 
         @template = Monocle.Templates[className]
-

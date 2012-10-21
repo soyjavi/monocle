@@ -25,9 +25,6 @@ class Monocle.View extends Monocle.Controller
         @el.remove()
 
     replace: (element) ->
-        #render = Mustache.render(@template, elements...)
-        #@replace(render)
-
         [previous, @el] = [@el, Monocle.Dom(element.el or element)]
         #@todo: QUOJS Bug >> Only one element
         previous.replaceWith(@el[0])

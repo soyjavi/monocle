@@ -1,4 +1,4 @@
-# Monocle 0.9.4 (BETA)
+# Monocle 0.9.6 (BETA)
 ### Build Awesome CoffeeScript MVC Applications
 
 ## Friend of my friends

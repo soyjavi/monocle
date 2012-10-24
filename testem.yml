@@ -3,10 +3,10 @@ framework: jasmine
 launch_in_dev:
 - PhantomJS
 - Chrome
-# - Firefox
-# - Safari
-# - Opera
-# - PhantomJS
+- Firefox
+- Safari
+- Opera
+- PhantomJS
 
 # test_page: spec/dependencies/page.html
 

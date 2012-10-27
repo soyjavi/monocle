@@ -80,6 +80,7 @@ describe "Model", ->
     asset = new Asset(name: "Johnson me!")
     expect(JSON.stringify(asset.attributes())).toEqual "{\"name\":\"Johnson me!\"}"
 
+
   # it "can be deserialized from JSON", ->
   #   asset = Asset.fromJSON("{\"name\":\"Un-Johnson me!\"}")
   #   expect(asset.name).toEqual "Un-Johnson me!"

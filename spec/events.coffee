@@ -69,4 +69,3 @@ describe "Events", ->
     EventTest.bind "bye", spy
     EventTest.trigger "bye"
     expect(spy).not.toHaveBeenCalled()
-

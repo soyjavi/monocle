@@ -1,5 +1,5 @@
 ###
-    Monocle 0.9.6
+    Monocle 0.9.7
     http://monocle.tapquo.com
 
     Copyright (C) 2011,2012 Javi Jiménez Villar (@soyjavi)
@@ -104,7 +104,6 @@ Monocle.Templates   = {}
 Monocle.Dom         = (args...) -> if $$? then $$ args... else $ args...
 
 # Global events
-
 Module.extend.call(Monocle, Events)
 
 Module.create = (instances, statics) ->

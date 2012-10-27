@@ -17,7 +17,7 @@ FILES_TO_JOIN=""
 #Main
 DIR=$SOURCES$NAMESPACE
 echo -e "\033[33m  [DIR]: "$SOURCES
-FILES=(js model.js controller.js view.js templayed.js)
+FILES=(js model.js controller.js view.js templayed.js route.js)
 for file in "${FILES[@]}"
 do
     FILES_TO_COMPILE=$FILES_TO_COMPILE" --js "$DIR$file

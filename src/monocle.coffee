@@ -1,5 +1,5 @@
 ###
-    Monocle 1.0.0
+    Monocle 1.0.1
     http://monocle.tapquo.com
 
     Copyright (C) 2011,2012 Javi Jiménez Villar (@soyjavi)
@@ -97,7 +97,7 @@ class Module
 
 # Globals
 Monocle = @Monocle = {}
-Monocle.version     = "0.9.4"
+Monocle.version     = "1.0.1"
 Monocle.Events      = Events
 Monocle.Module      = Module
 Monocle.Templates   = {}

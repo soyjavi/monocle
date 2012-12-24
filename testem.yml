@@ -9,16 +9,14 @@ launch_in_dev:
 # - PhantomJS
 
 src_files:
-- src/build/monocle.js
-- src/build/monocle.model.js
-- src/build/monocle.controller.js
-- src/build/monocle.route.js
-- src/build/monocle.templayed.js
-- src/build/monocle.view.js
+- build/src/monocle.js
+- build/src/monocle.model.js
+- build/src/monocle.controller.js
+- build/src/monocle.route.js
+- build/src/monocle.templayed.js
+- build/src/monocle.view.js
 
 # - vendor/lib/quo.js
 - vendor/lib/jquery.js
 
-- spec/build/**/*.js
-
-# test_page: spec/dependencies/page.html
+- build/spec/**/*.js

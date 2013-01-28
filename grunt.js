@@ -7,7 +7,10 @@ module.exports = function(grunt) {
     meta: {
         file: "monocle",
         name: 'Monocle - Amazing Monocle',
-        banner: '/*! <%= meta.name %> - <%= grunt.template.today("yyyy/m/d") %> */'
+        banner: '/* <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy/m/d") %>\n' +
+                '   <%= pkg.homepage %>\n' +
+                '   Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>' +
+                ' - Licensed <%= _.pluck(pkg.license, "type").join(", ") %> */'
     },
 
     resources: {
@@ -34,16 +37,16 @@ module.exports = function(grunt) {
 
     concat: {
       js: {
-        src: ['<banner>', '<config:resources.js>'],
-        dest: 'package/<%=meta.file%>.js'
+        src: ['<config:resources.js>'],
+        dest: 'build/<%=meta.file%>.js'
       }
     },
 
 
     min: {
       js: {
-        src: ['<banner>', 'package/<%=meta.file%>.js'],
-        dest: 'package/<%=meta.file%>.min.js'
+        src: ['<banner>', 'build/<%=meta.file%>.js'],
+        dest: 'package/<%=meta.file%>.js'
       }
     },
 

@@ -1,4 +1,4 @@
-# Monocle 0.9.6 (BETA)
+# Monocle 1.0.2
 ### Build Awesome CoffeeScript MVC Applications
 
 ## Friend of my friends
@@ -16,8 +16,8 @@ I use the MVC pattern therefore I am a fashion victim. All this would not have b
 - Visit Monocle [Site](http://monocle.tapquo.com/)
 
 ## Credits
-Created by [Javier Jiménez](http://twitter.com/soyjavi).
-Copyright (c) 2011, 2012 by Tapquo Inc.
+Created by [Javi Jiménez](http://twitter.com/soyjavi).
+Copyright (c) 2011, 2013
 
 ## Licensing Options
 Released under MIT license, https://raw.github.com/soyjavi/monocle/master/LICENSE.txt

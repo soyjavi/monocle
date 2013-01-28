@@ -26,8 +26,7 @@ class Monocle.View extends Monocle.Controller
 
     replace: (element) ->
         [previous, @el] = [@el, Monocle.Dom(element.el or element)]
-        #@todo: [QUOJS] Only supports one element
-        previous.replaceWith if $$? then @el[0] else @el
+        previous.replaceWith @el
         @delegateEvents(@events)
         @refreshElements()
         @el
@@ -38,11 +37,9 @@ class Monocle.View extends Monocle.Controller
 
     _html: (method, elements...) ->
         elements = (element.el or element for element in elements)
-
         render = Monocle.templayed(@template)(elements...)
         @replace(render)
-        #@todo: [QUOJS] Only supports one element
-        @container[method] if $$? then @el[0] else @el
+        @container[method] @el
         @
 
     _loadTemplateFrom: (url) ->

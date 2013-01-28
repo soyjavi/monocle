@@ -50,19 +50,23 @@ module.exports = function(grunt) {
       }
     },
 
+    copy: {
+      package: {
+        files: { 'todomvc/components/monocle/': ['package/*'] }
+      }
+    },
 
     watch: {
       files: ['<config:resources.coffee>'],
-      tasks: 'coffee concat min'
-    },
+      tasks: 'coffee concat min copy'
+    }
 
-
-    uglify: {}
   });
 
   grunt.loadNpmTasks('grunt-coffee');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', 'coffee concat min');
+  grunt.registerTask('default', 'coffee concat min copy');
 
 };

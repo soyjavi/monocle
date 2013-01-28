@@ -16,7 +16,7 @@ src_files:
 - build/src/monocle.templayed.js
 - build/src/monocle.view.js
 
-# - vendor/lib/quo.js
-- vendor/lib/jquery.js
+# - todomvc/components/quojs/quo.js
+- todomvc/components/jquery/jquery.js
 
 - build/spec/**/*.js

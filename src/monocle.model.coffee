@@ -32,23 +32,22 @@ class Monocle.Model extends Monocle.Module
     @find: (uid) ->
         record = @records[uid]
         throw new Error('Unknown record') unless record
-        record.clone()
+        record
 
     @findBy: (name, value) ->
         for uid, record of @records
             if record[name] is value
-                return record.clone()
+                return record
         throw new Error('Unknown record')
 
     @select: (callback) ->
-        result = (record for uid, record of @records when callback(record))
-        @cloneArray(result)
+        (record for uid, record of @records when callback(record))
 
     @each: (callback) ->
         for key, value of @records
             callback(value.clone())
 
-    @all: -> @cloneArray(@recordsValues())
+    @all: -> @recordsValues()
 
     @count: -> @recordsValues().length
 
@@ -63,6 +62,8 @@ class Monocle.Model extends Monocle.Module
     @destroyAll: -> @records = {}
 
     # Instance Methods
+    @include Monocle.Events
+
     constructor: (attributes) ->
         super
         @className = @constructor.name
@@ -99,12 +100,12 @@ class Monocle.Model extends Monocle.Module
     save: () ->
         error = @validate() if @validate?
         if error
-            @trigger('error', error)
+            @_trigger('error', error)
             return false
 
-        @trigger('beforeSave')
+        @_trigger('beforeSave')
         record = if @isNew() then @create() else @update()
-        @trigger('save')
+        @_trigger('save')
         record
 
     updateAttributes: (attributes) ->
@@ -119,41 +120,40 @@ class Monocle.Model extends Monocle.Module
         @save()
 
     create: ->
-        @trigger('beforeCreate')
+        @_trigger('beforeCreate')
 
-        record = new @constructor(@attributes())
-        record.uid = @uid
-        @constructor.records[@uid] = record
+        @constructor.records[@uid] = @
 
-        @trigger('create')
-        @trigger('change', 'create')
-        record.clone()
+        @_trigger('create')
+        @_trigger('change', 'create')
+        @
 
     update: ->
-        @trigger('beforeUpdate')
+        @_trigger('beforeUpdate')
 
         records = @constructor.records
         records[@uid].load @attributes()
 
-        @trigger('update')
-        @trigger('change', 'update')
-        records[@uid].clone()
+        @_trigger('update')
+        @_trigger('change', 'update')
+        records[@uid]
 
     destroy: ->
-        @trigger('beforeDestroy')
+        @_trigger('beforeDestroy')
         delete @constructor.records[@uid]
-        @trigger('destroy')
-        @trigger('change', 'destroy')
+        @_trigger('destroy')
+        @_trigger('change', 'destroy')
         @unbind()
         @
 
     clone: -> Object.create(@)
 
-    unbind: -> @trigger('unbind')
+    unbind: -> @_trigger('unbind')
 
-    trigger: (args...) ->
-        args.splice(1, 0, @)
-        @constructor.trigger(args...)
+    _trigger: (event, args...) ->
+      args.splice(0, 0, @)
+      @trigger(event, args...)
+      @constructor.trigger(event, args...)
 
 # Utilities & Shims
 unless typeof Object.create is 'function'

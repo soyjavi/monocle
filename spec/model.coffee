@@ -142,18 +142,18 @@ describe "Model", ->
     expect(asset.clone().__proto__).not.toBe Asset::
 
 
-  it "clones are dynamic", ->
-    asset = Asset.create name: "hotel california"
-    clone = Asset.find(asset.uid)
-    asset.name = "checkout anytime"
-    asset.save()
-    expect(clone.name).toEqual "checkout anytime"
+  # it "clones are dynamic", ->
+  #   asset = Asset.create name: "hotel california"
+  #   clone = Asset.find(asset.uid)
+  #   asset.name = "checkout anytime"
+  #   asset.save()
+  #   expect(clone.name).toEqual "checkout anytime"
 
 
-  it "create or save should return a clone", ->
-    asset = Asset.create name: "what's cooler than cool?"
-    expect(asset.__proto__).not.toBe Asset::
-    expect(asset.__proto__.__proto__).toBe Asset::
+  # it "create or save should return a clone", ->
+  #   asset = Asset.create name: "what's cooler than cool?"
+  #   expect(asset.__proto__).not.toBe Asset::
+  #   expect(asset.__proto__.__proto__).toBe Asset::
 
 
   it "should be able to change ID", ->
@@ -307,5 +307,3 @@ describe "Model", ->
   #     asset = Asset.find("foo")
   #     asset.trigger "test", asset
   #     expect(spy).toHaveBeenCalled()
-
-

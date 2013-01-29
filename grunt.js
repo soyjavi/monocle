@@ -35,17 +35,10 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
-      js: {
-        src: ['<config:resources.js>'],
-        dest: 'build/<%=meta.file%>.js'
-      }
-    },
-
 
     min: {
       js: {
-        src: ['<banner>', 'build/<%=meta.file%>.js'],
+        src: ['<banner>', '<config:resources.js>'],
         dest: 'package/<%=meta.file%>.js'
       }
     },
@@ -58,7 +51,7 @@ module.exports = function(grunt) {
 
     watch: {
       files: ['<config:resources.coffee>'],
-      tasks: 'coffee concat min copy'
+      tasks: 'coffee min copy'
     }
 
   });
@@ -67,6 +60,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', 'coffee concat min copy');
+  grunt.registerTask('default', 'coffee min copy');
 
 };

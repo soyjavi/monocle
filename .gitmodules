@@ -1,0 +1,6 @@
+[submodule "package"]
+	path = package
+	url = https://github.com/soyjavi/package-monocle
+[submodule "todomvc"]
+	path = todomvc
+	url = https://github.com/soyjavi/monocle.todomvc

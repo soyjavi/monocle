@@ -3,7 +3,6 @@ class Monocle.Model extends Monocle.Module
     @extend Monocle.Events
     @records    : {}
     @attributes : []
-    # @uid_counter: 0
 
     @fields: (attributes...) ->
         @records    = {}
@@ -17,11 +16,8 @@ class Monocle.Model extends Monocle.Module
         record = new @(attributes)
         record.save()
 
-    @uid: (prefix = 'c-') ->
-        # uid = prefix + @uid_counter++
-        # uid = @uid(prefix) if @exists(uid)
+    @uid: ->
         uid = guid()
-        uid
 
     @exists: (uid) ->
         try
@@ -31,14 +27,14 @@ class Monocle.Model extends Monocle.Module
 
     @find: (uid) ->
         record = @records[uid]
-        throw new Error('Unknown record') unless record
+        # throw new Error('Unknown record') unless record
         record.clone()
 
     @findBy: (name, value) ->
         for uid, record of @records
             if record[name] is value
                 return record.clone()
-        throw new Error('Unknown record')
+        # throw new Error('Unknown record')
 
     @select: (callback) ->
         result = (record for uid, record of @records when callback(record))

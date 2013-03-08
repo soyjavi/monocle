@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 
     resources: {
         coffee: ['src/**/*.coffee', 'spec/**/*.coffee'],
+        todomvc: ['todomvc/app/*.coffee'],
         js: ['build/**/monocle.js',
             'build/**/monocle.model.js',
             'build/**/monocle.controller.js',
@@ -23,7 +24,6 @@ module.exports = function(grunt) {
             'build/**/monocle.route.js']
     },
 
-
     coffee: {
       app: {
         src: ['<config:resources.coffee>'],
@@ -31,6 +31,14 @@ module.exports = function(grunt) {
         options: {
             bare: true,
             preserve_dirs: true
+        }
+      },
+      todomvc: {
+        src: ['<config:resources.todomvc>'],
+        dest: 'todomvc/app/build',
+        options: {
+            bare: true,
+            preserve_dirs: false
         }
       }
     },

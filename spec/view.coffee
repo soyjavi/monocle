@@ -8,7 +8,7 @@ describe "View", ->
 
   beforeEach ->
     class Task extends Monocle.Model
-      @fields: "title", "description"
+      @fields: {"title", "description"}
     task = new Task name: "Sample of task", description: "Lorem"
 
     class TaskView extends Monocle.View

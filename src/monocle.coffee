@@ -1,5 +1,5 @@
 ###
-    Monocle 1.0.2
+    Monocle 1.0.4
     http://monocle.tapquo.com
     Copyright (C) 2011,2013 Javi Jiménez Villar (@soyjavi)
 ###

@@ -19,10 +19,10 @@ module.exports = (grunt) ->
         'spec/*.coffee']
 
     coffee:
-      compile:
+      src:
         files:
           '<%= meta.endpoint %>/<%= meta.file %>.debug.js': ['<%= resources.src %>']
-          'spec/spec.js': ['<%= resources.spec %>']
+          'build/spec.js': ['<%= resources.spec %>']
 
     uglify:
       options:
@@ -35,14 +35,13 @@ module.exports = (grunt) ->
         pivotal:
           src: 'package/<%=meta.file%>.debug.js'
           options:
-            specs: 'spec/spec.js',
+            specs: 'build/spec.js',
             vendor: 'todomvc/components/jquery/jquery.js'
-            # helpers: 'todomvc/components/jquery/jquery.js'
 
     watch:
       src:
         files: ['<%= resources.src %>']
-        tasks: ['coffee:src', 'uglify']
+        tasks: ['coffee:src', 'uglify', 'jasmine']
       # spec:
       #   files: ['<%= resources.spec %>']
       #   tasks: ['stylus:stylesheets', 'stylus:theme']

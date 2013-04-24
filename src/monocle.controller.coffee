@@ -12,17 +12,20 @@ class Monocle.Controller extends Monocle.Module
     ###
     constructor: (options) ->
         if typeof options is "string"
-            @el = Monocle.Dom(options)
+            @el = Monocle.Dom options
         else
             @[key] = value for key, value of options
 
         @el = Monocle.Dom(document.createElement(@tag)) unless @el
+        # if @el.length
         @events = @constructor.events unless @events
         @elements = @constructor.elements unless @elements
 
-        @delegateEvents() if @events
-        @refreshElements() if @elements
+        do @delegateEvents if @events
+        do @refreshElements if @elements
         super
+        # else
+        #   undefined
 
     delegateEvents: ->
         for key, method of @events

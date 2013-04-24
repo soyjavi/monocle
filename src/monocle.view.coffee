@@ -21,7 +21,8 @@ class Monocle.View extends Monocle.Controller
     prepend: (elements...) -> @_html "prepend", elements...
 
     remove: () ->
-        @model.destroy()
+        #@TODO: Esto porqué?? es mejor que no elimine automáticamente el modelo no?
+        # @model.destroy()
         @el.remove()
 
     replace: (element) ->

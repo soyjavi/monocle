@@ -37,12 +37,11 @@ describe "Model", ->
 
   it "can find records by attribute", ->
     asset = Asset.create name: "test.pdf"
-    expect(Asset.findBy("name", "test.pdf")).toBeTruthy()
+    asset_found = Asset.findBy("name", "test.pdf")
+    # expect(Asset.findBy("name", "test.pdf")).toBeTruthy()
+    expect(asset_found.name is "test.pdf").toBeTruthy()
     asset.destroy()
-
-    expect(->
-      Asset.findBy "name", "test.pdf"
-    ).toThrow()
+    # expect(-> Asset.findBy "name", "test.pdf" ).toThrow()
 
 
   it "can check existence", ->

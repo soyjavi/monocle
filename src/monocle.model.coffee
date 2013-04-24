@@ -56,7 +56,9 @@ class Monocle.Model extends Monocle.Module
             result.push(value)
         result
 
-    @destroyAll: -> @records = {}
+    @destroyAll: ->
+      #@TODO mejor lanzar eventos de que se ha eliminado el modelo no??
+      @records = {}
 
     # Instance Methods
     constructor: (attributes) ->

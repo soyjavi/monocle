@@ -74,7 +74,7 @@ class Module
         setTimeout(@proxy(method), timeout || 0)
 
     constructor: ->
-        @init?(args...)
+        @init?(arguments)
 
 # Globals
 Monocle = @Monocle = {}

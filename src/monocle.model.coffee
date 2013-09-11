@@ -1,3 +1,5 @@
+"use strict"
+
 class Monocle.Model extends Monocle.Module
 
     @extend Monocle.Events

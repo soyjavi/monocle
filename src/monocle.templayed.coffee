@@ -1,6 +1,8 @@
 # templayed.js 0.2.1 - (c) 2012 Paul Engel
 # The fastest and smallest Mustache compliant Javascript templating library
 
+"use strict"
+
 Monocle.templayed = (template, data) ->
     get = (path, i) ->
         i = 1

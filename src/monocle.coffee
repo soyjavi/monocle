@@ -4,6 +4,8 @@
     Copyright (C) 2011,2013 Javi Jiménez Villar (@soyjavi)
 ###
 
+"use strict"
+
 Events =
     bind: (ev, callback) ->
         evs = ev.split(' ')
@@ -78,7 +80,7 @@ class Module
 
 # Globals
 Monocle = @Monocle = {}
-Monocle.version     = "1.0.2"
+Monocle.version     = "1.0.4"
 Monocle.Events      = Events
 Monocle.Module      = Module
 Monocle.Templates   = {}

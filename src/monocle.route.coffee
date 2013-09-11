@@ -1,3 +1,5 @@
+"use strict"
+
 class Monocle.Route extends Monocle.Module
 
   @extend Monocle.Events

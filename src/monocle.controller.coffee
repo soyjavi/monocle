@@ -1,3 +1,5 @@
+"use strict"
+
 class Monocle.Controller extends Monocle.Module
 
     @include Monocle.Events
@@ -11,21 +13,19 @@ class Monocle.Controller extends Monocle.Module
     @param  {options} Create properties within the controller or an element selector if the type is string.
     ###
     constructor: (options) ->
+        @className = @constructor.name
         if typeof options is "string"
             @el = Monocle.Dom options
         else
             @[key] = value for key, value of options
 
         @el = Monocle.Dom(document.createElement(@tag)) unless @el
-        # if @el.length
         @events = @constructor.events unless @events
         @elements = @constructor.elements unless @elements
 
         do @delegateEvents if @events
         do @refreshElements if @elements
         super
-        # else
-        #   undefined
 
     delegateEvents: ->
         for key, method of @events

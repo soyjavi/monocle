@@ -1,3 +1,5 @@
+"use strict"
+
 class Monocle.View extends Monocle.Controller
 
     @container: undefined
@@ -44,9 +46,7 @@ class Monocle.View extends Monocle.Controller
         @
 
     _loadTemplateFrom: (url) ->
-        className = @constructor.name
-
-        unless Monocle.Templates[className]
+        unless Monocle.Templates[@className]
             loader = if $$? then $$ else $
             response = loader.ajax
                             url: url
@@ -54,6 +54,6 @@ class Monocle.View extends Monocle.Controller
                             dataType: 'text'
                             error: -> console.error arguments
             response = response.responseText unless $$?
-            Monocle.Templates[className] = response
+            Monocle.Templates[@className] = response
 
-        @template = Monocle.Templates[className]
+        @template = Monocle.Templates[@className]

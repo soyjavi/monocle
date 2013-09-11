@@ -7,76 +7,76 @@
 "use strict"
 
 Events =
-    bind: (ev, callback) ->
-        evs = ev.split(' ')
-        calls = @hasOwnProperty('_callbacks') and @_callbacks or= {}
+  bind: (ev, callback) ->
+    evs = ev.split(' ')
+    calls = @hasOwnProperty('_callbacks') and @_callbacks or= {}
 
-        for name in evs
-            calls[name] or= []
-            calls[name].push(callback)
-        @
+    for name in evs
+      calls[name] or= []
+      calls[name].push(callback)
+    @
 
-    trigger: (args...) ->
-        ev = args.shift()
+  trigger: (args...) ->
+    ev = args.shift()
 
-        list = @hasOwnProperty('_callbacks') and @_callbacks?[ev]
-        return unless list
+    list = @hasOwnProperty('_callbacks') and @_callbacks?[ev]
+    return unless list
 
-        for callback in list
-            if callback.apply(@, args) is false
-                break
-        true
+    for callback in list
+      if callback.apply(@, args) is false
+        break
+    true
 
-    unbind: (ev, callback) ->
-        unless ev
-            @_callbacks = {}
-            return @
+  unbind: (ev, callback) ->
+    unless ev
+      @_callbacks = {}
+      return @
 
-        list = @_callbacks?[ev]
-        return @ unless list
+    list = @_callbacks?[ev]
+    return @ unless list
 
-        unless callback
-            delete @_callbacks[ev]
-            return @
+    unless callback
+      delete @_callbacks[ev]
+      return @
 
-        for cb, i in list when cb is callback
-            list = list.slice()
-            list.splice(i, 1)
-            @_callbacks[ev] = list
-            break
-        @
+    for cb, i in list when cb is callback
+      list = list.slice()
+      list.splice(i, 1)
+      @_callbacks[ev] = list
+      break
+    @
 
 moduleKeywords = ['included', 'extended']
 
 class Module
-    @include: (obj) ->
-        throw new Error('include(obj) requires obj') unless obj
-        for key, value of obj when key not in moduleKeywords
-            @::[key] = value
+  @include: (obj) ->
+    throw new Error('include(obj) requires obj') unless obj
+    for key, value of obj when key not in moduleKeywords
+      @::[key] = value
 
-        included = obj.included
-        included.apply(this) if included
-        @
+    included = obj.included
+    included.apply(this) if included
+    @
 
-    @extend: (obj) ->
-        throw new Error('extend(obj) requires obj') unless obj
-        for key, value of obj when key not in moduleKeywords
-            @[key] = value
+  @extend: (obj) ->
+    throw new Error('extend(obj) requires obj') unless obj
+    for key, value of obj when key not in moduleKeywords
+      @[key] = value
 
-        obj.extended?.apply(this)
-        @
+    obj.extended?.apply(this)
+    @
 
-    @proxy: (method) ->
-        => method.apply(@, arguments)
+  @proxy: (method) ->
+    => method.apply(@, arguments)
 
-    proxy: (method) ->
-        => method.apply(@, arguments)
+  proxy: (method) ->
+    => method.apply(@, arguments)
 
-    delay: (method, timeout) ->
-        setTimeout(@proxy(method), timeout || 0)
+  delay: (method, timeout) ->
+    setTimeout(@proxy(method), timeout || 0)
 
-    constructor: ->
-        @init?(arguments)
+  constructor: ->
+    @init?(arguments)
 
 # Globals
 Monocle = @Monocle = {}
